@@ -1,0 +1,155 @@
+<header>
+    <%= render "layouts/header"%>
+<header>
+<div class="container">
+  <p style="color: green"><%= notice %></p>
+  <% content_for :title, "Posts" %>
+  <% if current_user %>
+    <div class="bg-success p-2 text-light">Posts List</div>
+      <div class="row justify-content-end mt-2">
+          <form>
+              <label>Keyword : </label>
+              <input type="text" name="keyword">
+              <button type="submit" class="btn btn-light">Search</button>
+          </form>
+          <%= link_to "Create", new_post_path, class:"col-1 mx-1 text-light p-2 bg-success rounded text-decoration-none"%> &nbsp;&nbsp;
+          <%= link_to "Upload", upload_post_path, class:"col-1 mx-1 text-light p-2 bg-success rounded text-decoration-none"%> &nbsp;&nbsp;
+          <%= link_to "Download", download_posts_csv_path, class:"col-1 mx-1 text-light p-2 bg-success rounded text-decoration-none"%>
+      </div>
+      <div id="posts">
+        <table class='table table-striped'>
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Post Title</th>
+              <th>Post Description</th>
+              <th>Posted User</th>
+              <th>Posted Date</th>
+              <th>Operation</th>
+            </tr>
+          </thead>
+          <% if @posts.any?  %>
+            <% @posts.each_with_index do |post, index| %>
+              <tr>
+                <td><%= index+1 %></td>
+                <td><%= post.title %></td>
+                <td><%= post.description %></td>
+                <td><%= post.user.name%></td>
+                <td><%= post.created_at.strftime("%Y/%m/%d")%></td>
+                <td>
+                  <div class="d-flex">
+                    <%= link_to "Edit", edit_post_path(post),class:"btn btn-info" %> &nbsp;&nbsp;
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#detailModal">
+                    Detail
+                    </button>&nbsp;&nbsp;
+                      <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="container">
+                              <p>Are you sure to delete post ?</p>
+                                  <table class="table table-border-none">
+                                      <tr>
+                                          <td><b>ID</b></td>
+                                          <td> <%= post.id %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><b>Title</b></td>
+                                          <td> <%= post.title %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><b>Description</b></td>
+                                          <td> <%= post.description %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><b>Status</b></td>
+                                          <td> 
+                                              <%if post.status == 1 %>
+                                                Active
+                                              <% else %>
+                                                Inactive
+                                              <% end %>
+                                          </td>
+                                      </tr>
+                                  </table>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> &nbsp;&nbsp;
+                              <%= button_to "Delete", post, method: :delete ,class:"btn btn-danger" %> 
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#detailModal">
+                    Delete
+                    </button>&nbsp;&nbsp;
+                    </button>&nbsp;&nbsp;
+                      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Post Detail</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="container">
+                                  <table class="table table-border-none">
+                                      <tr>
+                                          <td><b>Title</b></td>
+                                          <td> <%= post.title %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><b>Description</b></td>
+                                          <td> <%= post.description %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><b>Status</b></td>
+                                          <td> 
+                                              <%if post.status == 1 %>
+                                                Active
+                                              <% else %>
+                                                Inactive
+                                              <% end %>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td><b>Created Date</b></td>
+                                          <td> <%= post.created_at.strftime('%Y/%m/%d') %></td>
+                                      </tr>
+                                      <tr>
+                                          <td><b>Updated Date</b></td>
+                                          <td> <%= post.updated_at.strftime('%Y/%m/%d') %></td>
+                                      </tr>
+                                  </table>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </td>
+              </tr>
+            <% end %>
+            <% else %>
+              <tr>
+                 <td colspan="6"><center>No data available in table</center></td>
+              </tr>
+            <% end %>
+          </table>
+          <div class="d-flex justify-content-end">
+              <%= paginate @posts %>
+          </div>
+        
+      </div>
+  <% end %>
+</div>
+<%= render "layouts/footer"%>
+
+

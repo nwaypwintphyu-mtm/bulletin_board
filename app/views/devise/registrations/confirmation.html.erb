@@ -1,0 +1,52 @@
+<h2>Confirm registration</h2>
+<%= form_for(:user, url: registration_path(:user), method: :post) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", value: @user.name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: @user.email %>
+  </div>
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password", value: @user.password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", value: @user.password_confirmation %>
+  </div>
+  <div class="field">
+    <%= f.label :utype %>
+    <%= f.text_field :utype, autocomplete: "utype", value: @user.utype %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone, autofocus: true, autocomplete: "phone", value: @user.phone %>
+  </div>
+  <div class="field">
+    <%= f.label :dob %><br />
+    <%= f.date_field :dob, autofocus: true, autocomplete: "date of birth", value: @user.dob %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address, autofocus: true, autocomplete: "address", value: @user.address %>
+  </div>
+  <div class="field">
+  <%= f.label :profile %><br />
+  <%= f.text_field :profile, autofocus: true, autocomplete: "profile", value: @user.profile %>
+</div>
+  <div class="field">
+    <% if @user.profile.attached? %>
+      <%= image_tag(@user.profile)%>
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Confirm", class: "btn btn-sm btn-primary", name: "commit", value: "confirm" %>
+    <%= f.submit "Cancel", class: "btn btn-sm btn-primary", name: "commit", value: "cancel" %>
+  </div>
+<% end %>

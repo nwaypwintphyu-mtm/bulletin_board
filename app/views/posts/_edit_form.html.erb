@@ -1,0 +1,38 @@
+<% @create_user_id = current_user.id %>
+<% @updated_user_id = current_user.id %>
+
+<%= form_with(model: post) do |form| %>
+<table class="mt-5 m-auto" style="width:50%">
+  <tr>
+    <td><%= form.label :title%></td>
+    <td>
+      <%= form.text_field :title,class: "form-control my-2" %>
+      <% if post.errors[:title].any? %>
+        <span class="text-danger"><%= post.errors[:title].first %></span>
+      <% end %>
+    </td>
+    <td</td>
+  </tr>
+
+  <tr>
+    <td><%= form.label :Description%></td>
+    <td>
+      <%= form.text_area :description, class: "form-control my-2"%>
+      <% if post.errors[:description].any? %>
+        <span class="text-danger"><%= post.errors[:description].first %></span>
+      <% end %>
+    </td>
+  </tr>
+    <%= form.hidden_field :status %>
+    <%= form.hidden_field :create_user_id ,value: @create_user_id %>
+    <%= form.hidden_field :updated_user_id,value: @updated_user_id %>
+  <tr>
+      <td></td>
+      <td>
+        <%= form.submit "Edit", name: "commit", value: "edit" %>
+        <%= form.submit "Clear", name: "commit", value: "clear" %>
+      </td>
+  </tr>
+  </table>
+<% end %>
+

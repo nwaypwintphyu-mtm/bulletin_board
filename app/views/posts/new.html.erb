@@ -1,0 +1,16 @@
+<header>
+    <%= render "layouts/header"%>
+</header>
+<div class="container">
+  <% content_for :title, "New post" %>
+  <div class="p-2">
+    <i class="fs-5 fa-solid fa-arrow-left"></i>
+    <%= link_to "Back", posts_path %>
+  </div>
+  <% if current_user %>
+    <div class="bg-success p-2 text-light">Create Post</div>
+    <%= render "form", post: @post %>
+    <br>
+  <% end %>
+</div>
+<%= render "layouts/footer"%>

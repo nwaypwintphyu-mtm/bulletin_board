@@ -1,0 +1,43 @@
+<header>
+    <%= render "layouts/header"%>
+ <header>
+<div class="container">
+  <% content_for :title, "Posts" %>
+  <% if current_user %>
+    <div class="bg-success mt-2 p-2 text-light">Edit Post</div>
+    <%= form_with(model: @post) do |form| %>
+      <table class="mt-5 m-auto" style="width:50%">
+        <tr>
+          <td><%= form.label :title, style: "display: block" %></td>
+          <td>
+              <%= form.text_field :title,class: "form-control my-2" %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= form.label :description, style: "display: block" %></td>
+          <td>
+              <%= form.text_area :description,class: "form-control my-2" %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= form.label :status, style: "display: block" %></td>
+          <td>
+              <% if @post.status == 1 %>
+                <%= form.check_box :status,{checked: true},class: "my-2" %>
+              <% else %>
+                <%= form.check_box :status,{checked: false},class: "my-2" %>
+              <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+              <%= form.submit "Confirm",class: "btn btn-sm btn-primary", name: "commit", value: "confirm" %>
+              <%= form.submit "Cancle",class: "btn btn-sm btn-secondary", name: "commit", value: "cancle" %>
+          </td>
+        </tr>
+      <table>
+    <% end %>
+    <% end %>
+</div>
+<%= render "layouts/footer"%>

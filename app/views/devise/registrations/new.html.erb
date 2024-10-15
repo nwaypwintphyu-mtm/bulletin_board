@@ -1,0 +1,59 @@
+<h2>Let's Sign up</h2>
+<%= form_for(@user, url: confirm_registration_path(@user), multipart: true) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+    <% if @user.errors[:name].any? %>
+        <span class="text-danger"><%= @user.errors[:name].first %></span>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <% if @user.errors[:email].any? %>
+      <span class="text-danger"><%= @user.errors[:email].first %></span>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% if @user.errors[:password].any? %>
+      <span class="text-danger"><%= @user.errors[:password].first %></span>
+    <% end %>
+  </div>
+  <div class="field">t
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <% if @user.errors[:password_confirmation].any? %>
+      <span class="text-danger"><%= @user.errors[:password_confirmation].first %></span>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :utype %>
+    <%= f.select :utype, [["User ", 1], ["Admin", 0]] %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
+  </div>
+  <div class="field">
+    <%= f.label :dob %><br />
+    <%= f.date_field :dob, autofocus: true, autocomplete: "date of birth" %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address, autofocus: true%>
+  </div>
+  <div class="field">
+    <%= f.label :profile %><br />
+    <%= f.file_field :profile, autofocus: true %>
+    <% if @user.errors[:profile].any? %>
+      <span class="text-danger"><%= @user.errors[:profile].first %></span>
+    <% end %>
+  </div>
+   <%= f.submit "Register", name: "commit", value: "register" %>
+  <%= button_to "Clear", registration_path(resource_name), method: :post, name: "commit", value: "clear" %>
+<% end %>

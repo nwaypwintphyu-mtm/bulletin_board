@@ -1,0 +1,203 @@
+<header>
+    <%= render "layouts/header"%>
+<header>
+<div class="container" style="width:90%">
+  <p style="color: green"><%= notice %></p>
+  <% content_for :title, "Users" %>
+  <% if current_user %>
+  <div class="bg-success p-2 text-light">Posts List</div>
+      <div class="row justify-content-end my-3">
+          <form>
+             <div class="d-flex justify-content-between">
+              <div class="w-100">
+                <label>Name:</label>
+                <input type="text" name="name_keyword",value="<%= params[:name_keyword] %>" >
+              </div>
+
+              <div class="w-100">
+                <label>Email:</label>
+                <input type="text" name="email_keyword",value="<%= params[:email_keyword] %>" >
+              </div>
+              
+              <div  class="w-100">
+                <label>From:</label>
+                <input type="date" name="from_keyword",value="<%= params[:from_keyword] %>" >
+              </div>
+
+              <div class="w-100">
+                <label>To:</label>
+                <input type="date" name="to_keyword", value="<%= params[:to_keyword] %>" >
+              </div>
+
+              <div class="w-100">
+                <button type="submit" class="btn btn-success m-2">Search</button>
+              </div>
+             </div>
+          </form>
+
+         
+      </div>
+
+
+
+
+
+    <div class="bg-success p-2 text-light">Users List</div>
+      <table class="table table-striped">
+            <tr>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Create User</th>
+                <th>Phone</th>
+                <th>Type</th>
+                <th>Date of Birth</th>
+                <th>Address</th>
+                <th>Created_date</th>
+                <th>Updated_date</th>
+                <th>Operation</th>
+            </tr>
+        <% @Users.each_with_index do |user , index|%>
+            <tr>
+                <td><%= index+1 %></td>
+                <td><%= user.name%></td>
+                <td><%= user.email%></td>
+                <td><%= user.name%></td>
+                <td><%= user.phone%></td>
+                <td>
+                    <%if user.utype = "0" %>
+                        Admin
+                    <% else %>
+                        User
+                    <% end %>
+                </td>
+                <td><%= user.dob%></td>
+                <td><%= user.address %></td>
+                <td><%= user.created_at.strftime("%Y/%m/%d") %></td>
+                <td><%= user.updated_at.strftime("%Y/%m/%d") %></td>
+                <td>
+                <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#detailModal">
+                  Detail
+                </button>
+                <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">User Detail</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="container">
+                            <table class="table table-border-none">
+                                <tr>
+                                    <td rowspan="8">
+                                        <img src=".../public/uploads/profile.jpg">
+                                    </td>
+                                    <td><b>ID</b></td>
+                                    <td> <%= user.id %></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Name</b></td>
+                                    <td> <%= user.name %></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Type</b></td>
+                                    <td> <%= user.utype %></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Email</b></td>
+                                    <td> <%= user.email %></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Phone</b></td>
+                                    <td> <%= user.phone %></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Date of Birth</b></td>
+                                    <td> <%= user.dob %></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Address</b></td>
+                                    <td> <%= user.address %></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Created Date</b></td>
+                                    <td> <%= user.created_at.strftime('%Y/%m/%d') %></td>
+                                </tr>
+                            </table>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                  Delete
+                </button>
+                
+                <!--Delete Modal -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                      <h6 class="text-danger">Are you sure to delete user ? </h6>
+                        <div class="container">
+                            <table class="table table-border-none">
+                                <tr>
+                                    <td><b>ID</b></td>
+                                    <td> <%= user.id %></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Name</b></td>
+                                    <td> <%= user.name %></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Type</b></td>
+                                    <td> <%= user.utype %></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Email</b></td>
+                                    <td> <%= user.email %></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Phone</b></td>
+                                    <td> <%= user.phone %></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Date of Birth</b></td>
+                                    <td> <%= user.dob %></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Address</b></td>
+                                    <td> <%= user.address %></td>
+                                </tr>
+                            </table>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <%= button_to "Delete", delete_user_path(user.id), method: :delete, class:"btn btn-danger"%>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </td>
+            </tr>
+      <% end %>
+    </table>
+        <div class="d-flex justify-content-end">
+                <%= paginate @Users %>
+        </div>
+    </div>
+    <% end %>
+</div>
+<%= render "layouts/footer"%>
+
+
+
