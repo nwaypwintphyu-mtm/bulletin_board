@@ -2,23 +2,21 @@ require 'csv'
 class PostsController < ApplicationController
   skip_before_action :verify_authenticity_token #csrf token
   before_action :authenticate_user!
-
-
   # GET /posts or /posts.json
   def index
     @posts = Post.all
         if current_user.utype == "1"
-          @posts = Post.includes(:user).where(create_user_id: current_user.id).page(params[:page]).per(4)
+          @posts = Post.includes(:user).where(create_user_id: current_user.id).page(params[:page]).per(4).order("id DESC")
          
         else
-          @posts = Post.includes(:user).page(params[:page]).per(4)
+          @posts = Post.includes(:user).page(params[:page]).per(4).order("id DESC")
         end
 
         # for search with keyword
         if params[:keyword].present?
           @posts = @posts.where("title LIKE ? OR description LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
         end
-        @posts = @posts.page(params[:page]).per(4)
+          @posts = @posts.page(params[:page]).per(4).order("id DESC")
   end
 
   # GET /posts/1 or /posts/1.json
@@ -181,8 +179,10 @@ class PostsController < ApplicationController
   def update_post
    
   end
-    # PATCH/PUT /posts/1 or /posts/1.json
+
+  # PATCH/PUT /posts/1 or /posts/1.json
   def update 
+    @post = Post.find(params[:id])
       # for edit button 
       if params[:commit] == "edit"
         @post.assign_attributes(post_params)

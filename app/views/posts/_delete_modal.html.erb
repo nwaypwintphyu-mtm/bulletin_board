@@ -1,0 +1,47 @@
+<div class="modal fade" id="deleteModal<%= post.id %>" tabindex="-1" aria-labelledby="deleteModalLabel<%= post.id %>" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title" id="deleteModalLabel<%= post.id %>">Delete Confirm</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <p class="text-danger">Are you sure to delete post?</p>
+      <div class="container">
+          <table class="table table-border-none">
+              <tr>
+                  <td><b>Title</b></td>
+                  <td> <%= post.title %></td>
+              </tr>
+              <tr>
+                  <td><b>Description</b></td>
+                  <td> <%= post.description %></td>
+              </tr>
+              <tr>
+                  <td><b>Status</b></td>
+                  <td> 
+                      <%if post.status == "1" %>
+                        Active
+                      <% else %>
+                        Inactive
+                      <% end %>
+                  </td>
+              </tr>
+              <tr>
+                  <td><b>Created Date</b></td>
+                  <td> <%= post.created_at.strftime('%Y/%m/%d') %></td>
+              </tr>
+              <tr>
+                  <td><b>Updated Date</b></td>
+                  <td> <%= post.updated_at.strftime('%Y/%m/%d') %></td>
+              </tr>
+          </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <%= button_to "Delete", post, method: :delete ,class:"btn btn-danger" %> 
+    </div>
+  </div>
+</div>
+</div>

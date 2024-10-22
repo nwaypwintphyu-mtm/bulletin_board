@@ -1,0 +1,51 @@
+<div class="w-50 m-auto p-2">
+    <i class="fs-5 fa-solid fa-arrow-left"></i>
+    <%= link_to "Back", posts_path %>
+</div>
+<div class="w-50 m-auto" style="border:1px solid green;padding:0px; padding-bottom:20px;border-radius:5px">
+      <div class="bg-success p-2  text-light">Profile</div>
+      <table class="table table-border-none">
+                              <tr>
+                                  <td rowspan="10" class=" w-25">
+                                      <%= image_tag(@user.profile.url, class: "main-profile-image") if @user.profile.present? %>
+                                  </td>
+                                  <td><b>Name</b></td>
+                                  <td><%= @user.name %></td>
+                              </tr>
+                              <tr>
+                                  <td><b>Type</b></td>
+                                  <td>
+                                      <% if @user.utype == "0"%>
+                                        Admin
+                                      <%end%>
+                                      <% if @user.utype == "1" %>
+                                        User
+                                      <%end%>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td><b>Email</b></td>
+                                  <td><%= @user.email %></td>
+                              </tr>
+                              <tr>
+                                  <td><b>Phone</b></td>
+                                  <td><%= @user.phone %></td>
+                              </tr>
+                              <tr>
+                                  <td><b>Date of Birth</b></td>
+                                  <td><%= @user.dob %></td>
+                              </tr>
+                              <tr>
+                                  <td><b>Address</b></td>
+                                  <td><%= @user.address %></td>
+                              </tr>
+                              <tr>
+                                  <td><%= link_to "Edit Profile",edit_profile_path(@user), class:"btn btn-primary" %></td>
+                                  <td></td>
+                              <tr>
+                          </table>
+                          
+</div>
+<%= render "layouts/footer"%>
+
+

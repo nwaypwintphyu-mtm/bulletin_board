@@ -39,107 +39,20 @@
                 <td>
                   <div class="d-flex">
                     <%= link_to "Edit", edit_post_path(post),class:"btn btn-info" %> &nbsp;&nbsp;
-                    <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#detailModal">
-                    Detail
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#detailModal<%= post.id %>">
+                    Detail 
                     </button>&nbsp;&nbsp;
-                      <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <div class="container">
-                              <p>Are you sure to delete post ?</p>
-                                  <table class="table table-border-none">
-                                      <tr>
-                                          <td><b>ID</b></td>
-                                          <td> <%= post.id %></td>
-                                      </tr>
-                                      <tr>
-                                          <td><b>Title</b></td>
-                                          <td> <%= post.title %></td>
-                                      </tr>
-                                      <tr>
-                                          <td><b>Description</b></td>
-                                          <td> <%= post.description %></td>
-                                      </tr>
-                                      <tr>
-                                          <td><b>Status</b></td>
-                                          <td> 
-                                              <%if post.status == 1 %>
-                                                Active
-                                              <% else %>
-                                                Inactive
-                                              <% end %>
-                                          </td>
-                                      </tr>
-                                  </table>
-                              </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> &nbsp;&nbsp;
-                              <%= button_to "Delete", post, method: :delete ,class:"btn btn-danger" %> 
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#detailModal">
-                    Delete
+                    <%= render partial: 'detail_modal', locals: { post: post } %>
+                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<%= post.id %>">
+                    Delete 
                     </button>&nbsp;&nbsp;
-                    </button>&nbsp;&nbsp;
-                      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Post Detail</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <div class="container">
-                                  <table class="table table-border-none">
-                                      <tr>
-                                          <td><b>Title</b></td>
-                                          <td> <%= post.title %></td>
-                                      </tr>
-                                      <tr>
-                                          <td><b>Description</b></td>
-                                          <td> <%= post.description %></td>
-                                      </tr>
-                                      <tr>
-                                          <td><b>Status</b></td>
-                                          <td> 
-                                              <%if post.status == 1 %>
-                                                Active
-                                              <% else %>
-                                                Inactive
-                                              <% end %>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td><b>Created Date</b></td>
-                                          <td> <%= post.created_at.strftime('%Y/%m/%d') %></td>
-                                      </tr>
-                                      <tr>
-                                          <td><b>Updated Date</b></td>
-                                          <td> <%= post.updated_at.strftime('%Y/%m/%d') %></td>
-                                      </tr>
-                                  </table>
-                              </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    <%= render partial: 'delete_modal', locals: { post: post } %>
                 </td>
               </tr>
             <% end %>
             <% else %>
               <tr>
-                 <td colspan="6"><center>No data available in table</center></td>
+                 <td colspan="7"><center>No data available in table</center></td>
               </tr>
             <% end %>
           </table>

@@ -1,18 +1,58 @@
-<div class="modal fade" id="delete-modal-<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="delete-modal-label-<%= user.id %>" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<!-- Modal for each user -->
+<div class="modal fade" id="deleteModal<%= user.id %>" tabindex="-1" aria-labelledby="deleteModalLabel<%= user.id %>" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="delete-modal-label-<%= user.id %>">Delete User</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h5 class="modal-title" id="detailModalLabel<%= user.id %>">Delete Confirm</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        Are you sure you want to delete <%= user.name %>?
+       <div class="modal-body">
+       <p class="text-danger">Are you sure to delete user?</p>
+      <div class="container">
+          <table class="table table-border-none">
+            
+              <tr>
+                  <td><b>ID</b></td>
+                  <td><%= user.id %></td>
+              </tr>
+              <tr>
+                  <td><b>Name</b></td>
+                  <td><%= user.name %></td>
+              </tr>
+              <tr>
+                  <td><b>Type</b></td>
+                  <td>
+                      <% if user.utype == "0"%>
+                        Admin
+                      <%end%>
+                      <% if user.utype == "1" %>
+                        User
+                      <%end%>
+                  </td>
+              </tr>
+              <tr>
+                  <td><b>Email</b></td>
+                  <td><%= user.email %></td>
+              </tr>
+              <tr>
+                  <td><b>Phone</b></td>
+                  <td><%= user.phone %></td>
+              </tr>
+              <tr>
+                  <td><b>Date of Birth</b></td>
+                  <td><%= user.dob %></td>
+              </tr>
+              <tr>
+                  <td><b>Address</b></td>
+                  <td><%= user.address %></td>
+              </tr>
+          </table>
       </div>
-      <div class="modal-footer">
-       
-      </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <%= button_to "Delete", delete_user_path(user.id), method: :delete, class:"btn btn-danger"%>
+    </div>
     </div>
   </div>
 </div>

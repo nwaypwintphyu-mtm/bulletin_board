@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_user
 
   protected
 
@@ -29,6 +30,13 @@ class ApplicationController < ActionController::Base
   def set_devise_mapping
     request.env["devise.mapping"] = Devise.mappings[:user]
   end
+
+  private
+
+  def set_user
+    @user = current_user
+  end
+
 
   
 end

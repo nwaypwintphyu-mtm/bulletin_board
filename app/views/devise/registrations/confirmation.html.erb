@@ -1,5 +1,5 @@
 <h2>Confirm registration</h2>
-<%= form_for(:user, url: registration_path(:user), method: :post) do |f| %>
+<%= form_for(:user, url: confirm_registration_path, method: :post) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <div class="field">
     <%= f.label :name %><br />
@@ -39,11 +39,9 @@
   <div class="field">
   <%= f.label :profile %><br />
   <%= f.text_field :profile, autofocus: true, autocomplete: "profile", value: @user.profile %>
-</div>
+  </div>
   <div class="field">
-    <% if @user.profile.attached? %>
-      <%= image_tag(@user.profile)%>
-    <% end %>
+    <%= image_tag("#{root_url}uploads/#{file_path.basename.to_s}", style: "width: 200px; height: 200px;") %>
   </div>
   <div class="actions">
     <%= f.submit "Confirm", class: "btn btn-sm btn-primary", name: "commit", value: "confirm" %>

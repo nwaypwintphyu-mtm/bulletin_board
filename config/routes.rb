@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get "user/index"
   resources :posts
+  resources :users, only: [:create]
   # devise_for :users
   devise_for :users, controllers: { registrations: 'registrations' }
   # devise_for :users, controllers: { sessions: "users/registrations" }
@@ -26,10 +27,26 @@ Rails.application.routes.draw do
   # download csv
   get '/posts/download/csv', to: 'posts#download_csv', as: 'download_posts_csv'
 
+  #profile
+  get '/user/profile', to: 'user#profile', as: 'user_profile'
+
+  # edit profile
+  get '/profile/edit', to: 'user#edit_profile', as: 'edit_profile'
+  post '/profile/update', to: 'user#update', as: 'update_profile'
+
+
+ 
+
+
+
+
 
   devise_scope :user do
+    # post '/confirm/registration', to: 'registrations#confirm_registration', as: 'confirm_registration'
+    get '/users/sign_up', to: 'devise/registrations#new', as: 'new_user_registraion'
+    post '/user/create', to: 'registrations#create', as: 'user_create'
     post '/confirm_registration', to: 'registrations#confirm_registration', as: 'confirm_registration'
-    post '/new_registration', to: 'registrations#create' , as: 'new_registration'
+
   end
   
 end

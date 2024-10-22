@@ -16,8 +16,10 @@ module Bltsec
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
+    # for image
+    config.active_storage.service = :local
     # for mismatched
-    config.action_controller.allow_forgery_protection = true
+    # config.action_controller.allow_forgery_protection = true
 
     # Configuration for the application, engines, and railties goes here.
     #

@@ -10,23 +10,13 @@
         <tr>
           <td><%= form.label :title, style: "display: block" %></td>
           <td>
-              <%= form.text_field :title,class: "form-control my-2" %>
+              <%= form.text_field :title,class: "form-control my-2" , disabled: true%>
           </td>
         </tr>
         <tr>
           <td><%= form.label :description, style: "display: block" %></td>
           <td>
-              <%= form.text_area :description,class: "form-control my-2" %>
-          </td>
-        </tr>
-        <tr>
-          <td><%= form.label :status, style: "display: block" %></td>
-          <td>
-              <% if @post.status == 1 %>
-                <%= form.check_box :status,{checked: true},class: "my-2" %>
-              <% else %>
-                <%= form.check_box :status,{checked: false},class: "my-2" %>
-              <% end %>
+              <%= form.text_area :description,class: "form-control my-2", disabled: true %>
           </td>
         </tr>
         <tr>

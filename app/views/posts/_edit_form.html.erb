@@ -27,6 +27,13 @@
     <%= form.hidden_field :create_user_id ,value: @create_user_id %>
     <%= form.hidden_field :updated_user_id,value: @updated_user_id %>
   <tr>
+    <td>Status</td>
+    <td>
+      <%= hidden_field_tag "post[status]", 0 %>
+      <%= check_box_tag "post[status]", 1, @post.status == 1, class: "my-2" %>
+    </td>
+  </tr>
+  <tr>
       <td></td>
       <td>
         <%= form.submit "Edit", name: "commit", value: "edit" %>
