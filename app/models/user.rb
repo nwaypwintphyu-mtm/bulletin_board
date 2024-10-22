@@ -16,7 +16,7 @@ class User < ApplicationRecord
   
   validates :name, presence: {message: "Name can't be blank."} 
   validates :email, presence: {message: "Email can't be blank."}
-  validates :password, presence: { message: "Password can't bee blank." }
+  validates :password, presence: { message: "Password can't be blank." }
   validates :password_confirmation, presence: { message: "Password confirmation can't be blank." }
   validates_confirmation_of :password, message: "Password and password confirmation do not match."
   validates :profile, presence: {message: "Profile can't be blank."}
@@ -36,6 +36,13 @@ class User < ApplicationRecord
   # def set_default_role
   #   self.utype ||= :user
   # end
+
+
+  def updating?
+    self.persisted? && self.changed?
+  end
+
+ 
 
   
 end

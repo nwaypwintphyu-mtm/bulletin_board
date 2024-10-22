@@ -1,6 +1,8 @@
 <div class="w-50 m-auto p-2">
     <i class="fs-5 fa-solid fa-arrow-left"></i>
     <%= link_to "Back", posts_path %>
+    <p style="color: green"><%= notice %></p>
+
 </div>
 <div class="w-50 m-auto" style="border:1px solid green;padding:0px; padding-bottom:20px;border-radius:5px">
       <div class="bg-success p-2  text-light">Profile</div>
@@ -40,11 +42,10 @@
                                   <td><%= @user.address %></td>
                               </tr>
                               <tr>
-                                  <td><%= link_to "Edit Profile",edit_profile_path(@user), class:"btn btn-primary" %></td>
+                                  <td><%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-primary" %></td>
                                   <td></td>
                               <tr>
-                          </table>
-                          
+                          </table>   
 </div>
 <%= render "layouts/footer"%>
 

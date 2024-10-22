@@ -4,7 +4,7 @@
       <table style="width:100%">
         <tr>
           <td><div class="d-flex justify-content-end"><%= f.label :name ,"Name" %><span class="text-danger ms-2">*</span></div></td>
-          <td><%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control m-auto w-75" %>
+          <td><%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control my-1 m-auto w-75" %>
             <% if @user.errors[:name].any? %>
                 <span class="text-danger"><%= @user.errors[:name].first %></span>
             <% end %>
@@ -12,7 +12,7 @@
         </tr>
         <tr>
           <td><div class="d-flex justify-content-end"><%= f.label :email ,"E-Mail Address"%><span class="text-danger ms-2">*</span></div></td>
-          <td><%= f.email_field :email, autofocus: true, autocomplete: "name", class: "form-control m-auto w-75" %>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "name", class: "form-control my-1 m-auto w-75" %>
             <% if @user.errors[:email].any? %>
                 <span class="text-danger"><%= @user.errors[:email].first %></span>
             <% end %>
@@ -21,7 +21,7 @@
         <tr>
           <td><div class="d-flex justify-content-end"><%= f.label :password, "Password"%><span class="text-danger">*</span></div></td>
           <td>
-              <%= f.password_field :password, autocomplete: "new-password" , class: "form-control m-auto w-75"  %>
+              <%= f.password_field :password, autocomplete: "new-password" , class: "form-control my-1 m-auto w-75"  %>
               <% if @user.errors[:password].any? %>
                 <span class="text-danger"><%= @user.errors[:password].first %></span>
               <% end %>
@@ -30,7 +30,7 @@
         <tr>
           <td> <div class="d-flex justify-content-end"><%= f.label :password_confirmation, "Password Confirmation",class: "float-end" %><span class="text-danger">*</span><div></td>
           <td>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password" , class: "form-control m-auto w-75"  %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" , class: "form-control my-1 m-auto w-75"  %>
               <% if @user.errors[:password_confirmation].any? %>
                 <span class="text-danger"><%= @user.errors[:password_confirmation].first %></span>
               <% end %>
@@ -45,7 +45,7 @@
         <tr>
           <td> <%= f.label :phone, "Phone",class: "float-end" %></td>
           <td>
-              <%= f.text_field :phone, autocomplete: "phone" , class: "form-control m-auto w-75"  %>
+              <%= f.text_field :phone, autocomplete: "phone" , class: "form-control my-1 m-auto w-75"  %>
               <% if @user.errors[:phone].any? %>
                 <span class="text-danger"><%= @user.errors[:phone].first %></span>
               <% end %>
@@ -54,7 +54,7 @@
         <tr>
           <td> <%= f.label :dob, "Date of Birth",class: "float-end" %></td>
           <td>
-              <%= f.date_field :dob, autocomplete: "dob" , class: "form-control m-auto w-75"  %>
+              <%= f.date_field :dob, autocomplete: "dob" , class: "form-control my-1 m-auto w-75"  %>
               <% if @user.errors[:dob].any? %>
                 <span class="text-danger"><%= @user.errors[:dob].first %></span>
               <% end %>
@@ -63,7 +63,7 @@
         <tr>
           <td> <%= f.label :address, "Address",class: "float-end" %></td>
           <td>
-              <%= f.text_field :address, autocomplete: "address" , class: "form-control m-auto w-75"  %>
+              <%= f.text_field :address, autocomplete: "address" , class: "form-control my-1 m-auto w-75"  %>
               <% if @user.errors[:address].any? %>
                 <span class="text-danger"><%= @user.errors[:address].first %></span>
               <% end %>
@@ -72,7 +72,7 @@
         <tr>
           <td><div class="d-flex justify-content-end"><%= f.label :profile, "Profile",class: "float-end" %><span class="text-danger">*</span></div></td>
           <td>
-              <%= f.file_field :profile, autocomplete: "profile" , class: "form-control m-auto w-75"  %>
+              <%= f.file_field :profile, autocomplete: "profile" , class: "form-control my-1 m-auto w-75"  %>
               <% if @user.errors[:profile].any? %>
                 <span class="text-danger"><%= @user.errors[:profile].first %></span>
               <% end %>
@@ -91,6 +91,5 @@
       </table>
       <% end %>
 </div>
-<%= render "layouts/footer"%>
 
 

@@ -30,11 +30,23 @@ Rails.application.routes.draw do
   #profile
   get '/user/profile', to: 'user#profile', as: 'user_profile'
 
+  # edit profile back linkn
+
+  get '/user/edit/profile', to: 'user#edit_profile', as: 'edit_profile'
+  
+
+  # change password
+  get '/user/change/password', to: 'user#change_password', as: 'change_password'
+
   # edit profile
-  get '/profile/edit', to: 'user#edit_profile', as: 'edit_profile'
-  post '/profile/update', to: 'user#update', as: 'update_profile'
+  # patch '/profile/update', to: 'user#update', as: 'user_edit'
 
-
+  resources :user do
+    member do
+      get 'edit'
+      patch 'update'
+    end
+  end
  
 
 
@@ -46,7 +58,6 @@ Rails.application.routes.draw do
     get '/users/sign_up', to: 'devise/registrations#new', as: 'new_user_registraion'
     post '/user/create', to: 'registrations#create', as: 'user_create'
     post '/confirm_registration', to: 'registrations#confirm_registration', as: 'confirm_registration'
-
   end
   
 end
