@@ -21,7 +21,7 @@ gem "devise"
 
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
 
-gem 'paperclip', '~> 2.3.8'
+gem 'paperclip', '~> 6.1.0'
 
 gem 'imagemagick-identify'
 
