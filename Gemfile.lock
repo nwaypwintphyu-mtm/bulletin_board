@@ -121,6 +121,7 @@ GEM
     drb (2.2.1)
     erubi (1.13.0)
     ffi (1.17.0-x64-mingw-ucrt)
+    ffi (1.17.0-x86_64-linux-gnu)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.6)
@@ -196,6 +197,8 @@ GEM
     nio4r (2.7.3)
     nokogiri (1.16.7-x64-mingw-ucrt)
       racc (~> 1.4)
+    nokogiri (1.16.7-x86_64-linux)
+      racc (~> 1.4)
     orm_adapter (0.5.0)
     paperclip (2.3.16)
       activerecord (>= 2.3.0)
@@ -212,7 +215,7 @@ GEM
     puma (6.4.3)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.1.7)
+    rack (3.1.8)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -303,8 +306,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sidekiq (7.3.2)
-      concurrent-ruby (< 2)
+    sidekiq (7.3.4)
       connection_pool (>= 2.3.0)
       logger
       rack (>= 2.2.4)
@@ -352,6 +354,7 @@ GEM
 
 PLATFORMS
   x64-mingw-ucrt
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap
@@ -375,7 +378,7 @@ DEPENDENCIES
   rchardet
   rubocop-rails-omakase
   selenium-webdriver
-  sidekiq (~> 7.3, >= 7.3.2)
+  sidekiq (~> 7.3)
   smarter_csv
   sprockets-rails
   stimulus-rails
