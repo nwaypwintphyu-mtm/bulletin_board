@@ -28,5 +28,12 @@ module Bltsec
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # for forget password
+    config.to_prepare do
+      Devise.setup do |config|
+        config.reset_password_within = 6.hours
+      end
+    end
   end
 end

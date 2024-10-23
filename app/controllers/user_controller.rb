@@ -73,14 +73,10 @@ end
       render :edit_profile
 
     end
-
-    
-     
   end
 
-
   def profile
-    
+
   end
 
 

@@ -19,7 +19,6 @@ gem "jbuilder"
 
 gem "devise"
 
-
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
 
 gem 'paperclip', '~> 2.3.8'
@@ -39,6 +38,8 @@ gem 'smarter_csv'
 gem 'rchardet'
 
 gem 'byebug', '~> 11.1', '>= 11.1.3'
+
+
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
@@ -72,6 +73,8 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  gem 'letter_opener_web', '~> 3.0'
 end
 
 group :test do

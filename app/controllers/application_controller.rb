@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_user
+  before_action :set_devise_mapping
+  
 
   protected
 
@@ -22,9 +24,6 @@ class ApplicationController < ActionController::Base
     end
   end
   
-
-  before_action :set_devise_mapping
-
   private
 
   def set_devise_mapping
@@ -37,6 +36,4 @@ class ApplicationController < ActionController::Base
     @user = current_user
   end
 
-
-  
 end
