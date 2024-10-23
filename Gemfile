@@ -29,7 +29,7 @@ gem 'carrierwave'
 
 gem 'image_processing', '~> 1.2'
 
-gem 'sidekiq', '~> 7.3', '>= 7.3.2'
+gem 'sidekiq', '~> 7.3'
 
 gem 'mini_magick'
 
