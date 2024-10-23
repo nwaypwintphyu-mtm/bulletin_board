@@ -1,7 +1,6 @@
 # require 'paperclip'
 class User < ApplicationRecord
   extend Devise::Models
-  # has_attached_file :profile, styles: { medium: "300x300>", thumb: "100x100>" }
   has_attached_file :profile
   validates_attachment_content_type :profile, content_type: /\Aimage\/.*\z/
   has_many :posts, foreign_key: 'create_user_id'
@@ -15,7 +14,7 @@ class User < ApplicationRecord
   mount_uploader :profile, ProfileUploader
   
   validates :name, presence: {message: "Name can't be blank."} 
-  validates :email, presence: {message: "Email can't be blank."}
+  validates :email, presence: { message: "Email can't be blank." }
   validates :password, presence: { message: "Password can't be blank." }
   validates :password_confirmation, presence: { message: "Password confirmation can't be blank." }
   validates_confirmation_of :password, message: "Password and password confirmation do not match."

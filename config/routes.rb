@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
 
   # letter opener
+  # mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  # mount LetterOpener::Engine, at: "/letter_opener" if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
+
 
   # devise_for :users, controllers: { sessions: "users/registrations" }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -19,7 +23,7 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  # get '/uploads/:filename', to: 'registrations#image', as: 'image'
+
 
   delete '/delete/user/:id', to: 'user#destroy', as: 'delete_user'
   root 'posts#index'
@@ -41,10 +45,12 @@ Rails.application.routes.draw do
 
   # change password
   get '/user/change/password', to: 'user#change_password', as: 'change_password'
+  get '/password/change', to: 'password#edit', as: 'edit_password'
+  patch '/password/change', to: 'password#update'
+
 
   # edit profile
   # patch '/profile/update', to: 'user#update', as: 'user_edit'
-
   resources :user do
     member do
       get 'edit'
@@ -52,11 +58,6 @@ Rails.application.routes.draw do
     end
   end
  
-
-
-
-
-
   devise_scope :user do
     # post '/confirm/registration', to: 'registrations#confirm_registration', as: 'confirm_registration'
     get '/users/sign_up', to: 'devise/registrations#new', as: 'new_user_registraion'

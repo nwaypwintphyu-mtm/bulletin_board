@@ -8,18 +8,22 @@
   <table style="width:100%" class="mt-3">
     <tr>
         <td><div class="d-flex justify-content-end"><%= form.label :name ,"Name" %><span class="text-danger ms-2">*</span></div></td>
-        <td><%= form.text_field :name,  class: "form-control my-1 m-auto w-75", required: true %>
-            <% if @user.errors[:name].any? %>
-                <span class="text-danger"><%= @user.errors[:name].first %></span>
-            <% end %>
+        <td><%= form.text_field :name,  class: "form-control my-1 m-auto w-75"  %>
+             <div class="m-auto w-75">
+                  <% if @user.errors[:name_error].any? %>
+                  <span class="text-danger" ><%= @user.errors[:name_error].first %></span>
+                  <% end %>
+              </div>
         </td>
     </tr>
     <tr>
         <td><div class="d-flex justify-content-end"><%= form.label :email ,"Email" %><span class="text-danger ms-2">*</span></div></td>
-        <td><%= form.text_field :email,  class: "form-control my-1 m-auto w-75", required: true  %>
-            <% if @user.errors[:email].any? %>
-                <span class="text-danger"><%= @user.errors[:email].first %></span>
-            <% end %>
+        <td><%= form.text_field :email,  class: "form-control my-1 m-auto w-75"   %>
+            <div class="m-auto w-75">
+                <% if @user.errors[:email_error].any? %>
+                <span class="text-danger" ><%= @user.errors[:email_error].first %></span>
+                <% end %>
+            </div>
         </td>
     </tr>
     <tr>

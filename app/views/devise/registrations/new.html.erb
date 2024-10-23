@@ -1,39 +1,49 @@
+
+
 <div class="w-50 m-auto" style="border:1px solid green;padding:0px; padding-bottom:20px;border-radius:5px">
       <div class="bg-success p-2  text-light">Register</div>
       <%= form_for(@user, url: user_create_path, multipart: true) do |f| %>
-      <table style="width:100%">
+      <table style="width:100%" class="mt-3">
         <tr>
           <td><div class="d-flex justify-content-end"><%= f.label :name ,"Name" %><span class="text-danger ms-2">*</span></div></td>
           <td><%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control my-1 m-auto w-75" %>
-            <% if @user.errors[:name].any? %>
-                <span class="text-danger"><%= @user.errors[:name].first %></span>
-            <% end %>
+               <div class="m-auto w-75">
+                <% if @user.errors[:name].any? %>
+                <span class="text-danger" ><%= @user.errors[:name].first %></span>
+                <% end %>
+               </div>
           </td>
         </tr>
         <tr>
           <td><div class="d-flex justify-content-end"><%= f.label :email ,"E-Mail Address"%><span class="text-danger ms-2">*</span></div></td>
-          <td><%= f.email_field :email, autofocus: true, autocomplete: "name", class: "form-control my-1 m-auto w-75" %>
-            <% if @user.errors[:email].any? %>
-                <span class="text-danger"><%= @user.errors[:email].first %></span>
-            <% end %>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control my-1 m-auto w-75" %>
+            <div class="m-auto w-75">
+                <% if @user.errors[:email].any? %>
+                <span class="text-danger"><%= @user.errors[:email].last %></span>
+                <% end %>
+            </div>
           </td>
         </tr>
         <tr>
           <td><div class="d-flex justify-content-end"><%= f.label :password, "Password"%><span class="text-danger">*</span></div></td>
           <td>
               <%= f.password_field :password, autocomplete: "new-password" , class: "form-control my-1 m-auto w-75"  %>
-              <% if @user.errors[:password].any? %>
-                <span class="text-danger"><%= @user.errors[:password].first %></span>
-              <% end %>
+              <div class="m-auto w-75">
+                <% if @user.errors[:password].any? %>
+                  <span class="text-danger"><%= @user.errors[:password].last %></span>
+                <% end %>
+              </div>
           </td>
         </tr>
         <tr>
           <td> <div class="d-flex justify-content-end"><%= f.label :password_confirmation, "Password Confirmation",class: "float-end" %><span class="text-danger">*</span><div></td>
           <td>
               <%= f.password_field :password_confirmation, autocomplete: "new-password" , class: "form-control my-1 m-auto w-75"  %>
-              <% if @user.errors[:password_confirmation].any? %>
-                <span class="text-danger"><%= @user.errors[:password_confirmation].first %></span>
-              <% end %>
+              <div class="m-auto w-75">
+                <% if @user.errors[:password_confirmation].any? %>
+                  <span class="text-danger"><%= @user.errors[:password_confirmation].first %></span>
+                <% end %>
+              </div>
           </td>
         </tr>
         <tr>
@@ -46,47 +56,58 @@
           <td> <%= f.label :phone, "Phone",class: "float-end" %></td>
           <td>
               <%= f.text_field :phone, autocomplete: "phone" , class: "form-control my-1 m-auto w-75"  %>
-              <% if @user.errors[:phone].any? %>
-                <span class="text-danger"><%= @user.errors[:phone].first %></span>
-              <% end %>
+              <div class="m-auto w-75">
+                <% if @user.errors[:phone].any? %>
+                  <span class="text-danger"><%= @user.errors[:phone].first %></span>
+                <% end %>
+              </div>
           </td>
         </tr>
         <tr>
           <td> <%= f.label :dob, "Date of Birth",class: "float-end" %></td>
           <td>
               <%= f.date_field :dob, autocomplete: "dob" , class: "form-control my-1 m-auto w-75"  %>
-              <% if @user.errors[:dob].any? %>
-                <span class="text-danger"><%= @user.errors[:dob].first %></span>
-              <% end %>
+              <div class="m-auto w-75">
+                <% if @user.errors[:dob].any? %>
+                  <span class="text-danger"><%= @user.errors[:dob].first %></span>
+                <% end %>
+              </div>
           </td>
         </tr>
         <tr>
           <td> <%= f.label :address, "Address",class: "float-end" %></td>
           <td>
               <%= f.text_field :address, autocomplete: "address" , class: "form-control my-1 m-auto w-75"  %>
-              <% if @user.errors[:address].any? %>
-                <span class="text-danger"><%= @user.errors[:address].first %></span>
-              <% end %>
+              <div class="m-auto w-75">
+                <% if @user.errors[:address].any? %>
+                  <span class="text-danger"><%= @user.errors[:address].first %></span>
+                <% end %>
+              </div>
           </td>
         </tr>
         <tr>
           <td><div class="d-flex justify-content-end"><%= f.label :profile, "Profile",class: "float-end" %><span class="text-danger">*</span></div></td>
           <td>
               <%= f.file_field :profile, autocomplete: "profile" , class: "form-control my-1 m-auto w-75"  %>
-              <% if @user.errors[:profile].any? %>
-                <span class="text-danger"><%= @user.errors[:profile].first %></span>
-              <% end %>
+              <div class="m-auto w-75">
+                <% if @user.errors[:profile].any? %>
+                  <span class="text-danger"><%= @user.errors[:profile].first %></span>
+                <% end %>
+              </div>
           </td>
         </tr>
-       
+        
         <tr>
-        </br>
-        <td></td>
           <td></td>
           <td>
-            <%= f.submit "Register", name: "commit", value: "register", class: "btn btn-sm btn-primary"%>
-            <%= f.submit "Clear", name: "commit", value: "clear", class: "btn btn-sm btn-secondary"%>
+            <div class="m-auto w-75 my-3">
+              <%= f.submit "Register", name: "commit", value: "register", class: "btn btn-sm btn-primary"%>
+              <%= f.submit "Clear", name: "commit", value: "clear", class: "btn btn-sm btn-secondary"%>
+            </div>
           </td>
+        </tr>
+        <tr>
+          <td colspan="2"><p class="text-center">Already have an Account? <%= link_to "Sign Up", new_user_session_path %></p></td>
         </tr>
       </table>
       <% end %>

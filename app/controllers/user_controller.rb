@@ -3,30 +3,43 @@ class UserController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :authenticate_user!
 
-def user_params
-  params.require(:user).permit(:name, :email, :password, :password_confirmation, :utype, :phone, :dob, :address, :profile)
-end
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :utype, :phone, :dob, :address, :profile)
+  end
 
+  def show
+    render :new
+  end
   
-def index
-  if(current_user.utype == "0")
-    @Users = User.page(params[:page]).per(5).order("id DESC")
-    if params[:name_keyword].present? || params[:email_keyword].present? || params[:from_keyword].present? || params[:to_keyword].present?
-      @Users = @Users.where("name LIKE ? OR email LIKE ?", "%#{params[:name_keyword]}%", "%#{params[:email_keyword]}%")
+  def index
+    if(current_user.utype == "0")
+      @Users = User.page(params[:page]).per(5).order("id DESC")
+      # if params[:name_keyword].present? || params[:email_keyword].present? || params[:from_keyword].present? || params[:to_keyword].present?
+      #   # @Users = @Users.where("name LIKE ? OR email LIKE ?", "%#{params[:name_keyword]}%", "%#{params[:email_keyword]}%")
+      #   # if params[:from_keyword].present? && params[:to_keyword].present?
+      #   #   @Users = @Users.where("created_at BETWEEN ? AND ?", params[:from_keyword], params[:to_keyword])
+      #   # end
+      # end
+      if params[:name_keyword].present?
+        @Users = @Users.where("LOWER(name) LIKE ?", "%#{params[:name_keyword].downcase}%")
+      end
+      if params[:email_keyword].present?
+        @Users = @Users.where("LOWER(email) LIKE ?", "%#{params[:email_keyword].downcase}%")
+      end
       if params[:from_keyword].present? && params[:to_keyword].present?
         @Users = @Users.where("created_at BETWEEN ? AND ?", params[:from_keyword], params[:to_keyword])
       end
+    else
+      flash[:notice] = 'You do not have permission to access this page.'
+      redirect_to root_path
     end
-  else
-    flash[:notice] = 'You do not have permission to access this page.'
-    redirect_to root_path
   end
-end
- # for confirm
-def confirm
-  @user = User.new(params[:post])
-  render :confirm
-end
+
+  # for confirm
+  def confirm
+    @user = User.new(params[:post])
+    render :confirm
+  end
 
   # for delete
   def destroy
@@ -43,7 +56,25 @@ end
   def update
     @user = User.find(params[:id])
     if params[:commit] == "edit"
+    has_errors = false
 
+    if user_params["name"].empty?
+      @user.errors.add(:name_error,"Name can't be blank.")
+      has_errors = true
+    end
+
+    if user_params["email"].empty?
+      @user.errors.add(:email_error, "Email can't be blank.")
+      has_errors = true
+    else
+    unless valid_email_format?(user_params["email"])
+      @user.errors.add(:email_error, "Email format is invalid.")
+      has_errors = true
+    end
+    end
+    if has_errors
+      render :edit_profile and return
+    end
       # for un choose image
       if user_params["profile"] == nil
         profile = @user.profile
@@ -79,12 +110,9 @@ end
 
   end
 
-
-  def authenticate_user!
-    if !current_user
-      flash[:notice] = 'You need to sign in or sign up before continuing.'
-      redirect_to new_user_session_path
-    end
+  def valid_email_format?(email)
+    regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+    regex.match?(email)
   end
 end
 

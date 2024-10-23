@@ -5,7 +5,7 @@
   <p style="color: green"><%= notice %></p>
   <% content_for :title, "Users" %>
   <% if current_user %>
-  <div class="bg-success p-2 text-light">Posts List</div>
+  <div class="bg-success p-2 text-light">User List</div>
       <div class="row justify-content-end my-3">
           <form>
              <div class="d-flex justify-content-between">
@@ -37,12 +37,6 @@
 
          
       </div>
-
-
-
-
-
-    <div class="bg-success p-2 text-light">Users List</div>
       <table class="table table-striped">
             <tr>
                 <th>No.</th>
@@ -53,8 +47,6 @@
                 <th>Type</th>
                 <th>Date of Birth</th>
                 <th>Address</th>
-                <th>Created_date</th>
-                <th>Updated_date</th>
                 <th>Operation</th>
             </tr>
         <% @Users.each_with_index do |user , index|%>
@@ -74,8 +66,6 @@
                 </td>
                 <td><%= user.dob%></td>
                 <td><%= user.address %></td>
-                <td><%= user.created_at.strftime("%Y-%m-%d") %></td>
-                <td><%= user.updated_at.strftime("%Y-%m-%d") %></td>
                 <td>
                 <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#detailModal<%= user.id %>">
                 Detail

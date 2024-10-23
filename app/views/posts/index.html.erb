@@ -35,7 +35,7 @@
                 <td><%= post.title %></td>
                 <td><%= post.description %></td>
                 <td><%= post.user.name%></td>
-                <td><%= post.created_at.strftime("%Y/%m/%d")%></td>
+                <td><%= post.created_at.strftime("%Y-%m-%d")%></td>
                 <td>
                   <div class="d-flex">
                     <%= link_to "Edit", edit_post_path(post),class:"btn btn-info" %> &nbsp;&nbsp;

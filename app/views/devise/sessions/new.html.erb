@@ -1,3 +1,4 @@
+<div class="w-50 m-auto"><p style="color: green"><%= notice %></p></div>
 <div class="w-50 m-auto" style="border:1px solid green;padding:0px; padding-bottom:20px;border-radius:5px">
   <% content_for :title, "Login" %>
       <div class="bg-success p-2  text-light">Login</div>
@@ -21,7 +22,6 @@
                 <%= f.check_box :remember_me %>
               <%= f.label :remember_me %>
               <% end %>
-              
             </td>
             <td></td>
           </tr>
@@ -40,4 +40,3 @@
     
     
 </div>
-<%= render "layouts/footer"%>

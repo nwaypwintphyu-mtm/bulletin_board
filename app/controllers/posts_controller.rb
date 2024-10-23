@@ -19,10 +19,6 @@ class PostsController < ApplicationController
           @posts = @posts.page(params[:page]).per(4).order("id DESC")
   end
 
-  # GET /posts/1 or /posts/1.json
-  # def show
-  #   @post = Post.find(params[:id])
-  # end
 
   # GET /posts/new
   def new
@@ -39,33 +35,6 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     render :confirm
   end
-
-  # POST /posts or /posts.json
-  # def create
-  #   @post = Post.new(post_params)
-  #   # make for new post confirmation
-  #   if params[:commit] == "create"
-  #     if @post.valid?
-  #       render :new_post_confirm
-  #     else
-  #       render :new
-  #     end
-  #   end
-  #   if params[:commit] == "clear"
-  #     @post = Post.new
-  #     render :new
-  #   end
-  #   if params[:commit] == "cancle"
-  #     redirect_to posts_path
-  #   end
-  #   if params[:commit] == "confirm"
-  #     if @post.save
-  #       redirect_to posts_path, notice: "Post was successfully created."
-  #     else 
-  #       redirect_to posts_path, notice: "Post was successfully nltntoo created."
-  #     end
-  #   end
-  # end
 
   def upload_csv
     csv_file = params['csv_file']
@@ -142,6 +111,7 @@ class PostsController < ApplicationController
         send_data csv_string, type: 'text/csv', disposition: 'attachment'
       end
     end
+
   end
 
 
@@ -221,27 +191,14 @@ class PostsController < ApplicationController
     end
   end
 
-    private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def post_params
-      params.require(:post).permit(:title, :description, :status, :create_user_id, :updated_user_id)
-    end
-
-    # for showing login or not 
   private
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-  
-  def authenticate_user!
-    if !current_user
-      flash[:notice] = 'You need to sign in or sign up before continuing.'
-      redirect_to new_user_session_path
-    end
-  end 
-  
+  def post_params
+    params.require(:post).permit(:title, :description, :status, :create_user_id, :updated_user_id)
+  end
+
 
 end

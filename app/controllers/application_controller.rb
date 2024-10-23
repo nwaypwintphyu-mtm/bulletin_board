@@ -16,13 +16,13 @@ class ApplicationController < ActionController::Base
 
 
 
-  def create_link
-    if user_signed_in?
-      link_to "Create", posts_path, class: "nav-link"
-    else
-      link_to "Create", new_user_registration_path, class: "nav-link"
-    end
-  end
+  # def create_link
+  #   if user_signed_in?
+  #     link_to "Create", posts_path, class: "nav-link"
+  #   else
+  #     link_to "Create", new_user_registration_path, class: "nav-link"
+  #   end
+  # end
   
   private
 
@@ -35,5 +35,14 @@ class ApplicationController < ActionController::Base
   def set_user
     @user = current_user
   end
+  
+  # for showing login or not 
+  private
 
+  def authenticate_user!
+    if !current_user
+      flash[:notice] = 'You need to sign in or sign up before continuing.'
+      redirect_to new_user_session_path
+    end
+  end 
 end

@@ -2,6 +2,8 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
 
+  config.action_mailer.delivery_method = :letter_opener_web
+
   # image upload
 
 
@@ -35,8 +37,12 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+
   # letter opener
-  config.action_mailer.delivery_method = :letter_opener_web
+  # config.action_mailer.delivery_method = :letter_opener
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local

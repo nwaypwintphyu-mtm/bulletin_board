@@ -1,6 +1,7 @@
 require_relative "boot"
 
 require "rails/all"
+require 'letter_opener'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -29,11 +30,5 @@ module Bltsec
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # for forget password
-    config.to_prepare do
-      Devise.setup do |config|
-        config.reset_password_within = 6.hours
-      end
-    end
   end
 end
